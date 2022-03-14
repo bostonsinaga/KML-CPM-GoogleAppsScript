@@ -14,20 +14,22 @@
           kemudian masukkan potongan kode pada "A5", "A6", "An", ... (berurutan sebanyak jumlah potongan)
 
       UNTUK MELANJUTKAN DATA SILAHKAN MASUKKAN DATA PADA KOLOM 'A' DI BARIS LANJUTAN 
-      KEMUDIAN GANTI NULAI 'SUPER_ROW' (LIHAT BARIS 24) MENJADI URUTAN BARUS TERSEBUT
+      KEMUDIAN ISI NILAI CELL 'AC6000' DENGAN URUTAN BARUS TERSEBUT
       (pastikan dulu semua kolom pada baris itu kosong, karena data yang ada akan ditimpa)
 
   -pastikan seluruh kolom dan baris kosong
   -lalu jalankan script ini...
 */
 
-const SUPER_ROW = 4 // nilai default adalah 4
-
 const sheet = SpreadsheetApp.getActiveSheet();
 
 function susun() {
 
-  const startRow = SUPER_ROW, startCol = 1;
+  const AC6000 = sheet.getRange('AC6000').getValue(); // 'startRow' adjust
+  const startRow = AC6000 == '' ? 4 : AC6000;
+  sheet.getRange('AC6000').clear();
+  const startCol = 1;
+
   let currentRow = startRow, currentCol = startCol;
   let data, text, isAvailable = true;
 
