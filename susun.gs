@@ -1,4 +1,8 @@
 /*
+  !!! PERHATIAN... JIKA BERALIH KE SHEET LAIN, MOHON UNTUK MERELOAD LAMAN INI!!!
+  (Karena sheet target bisa tak terdeteksi dan mengakibatkan target eksekusi menjadi sheet sebelumnya)
+  (berlaku untuk semua kode sumber di sini)   
+
   *** Konstruktor Data untuk KML Copy Paste Machine ***
   *dibuat oleh Boston Sinaga untuk Faiz Almakmun*
 
@@ -13,9 +17,9 @@
       ->  tulis tanda "*" pada "A4" untuk mengisyaratkan input majemuk
           kemudian masukkan potongan kode pada "A5", "A6", "An", ... (berurutan sebanyak jumlah potongan)
 
-      UNTUK MELANJUTKAN DATA SILAHKAN MASUKKAN DATA PADA KOLOM 'A' DI BARIS LANJUTAN 
-      KEMUDIAN ISI NILAI CELL 'AC6000' DENGAN URUTAN BARUS TERSEBUT
-      (pastikan dulu semua kolom pada baris itu kosong, karena data yang ada akan ditimpa)
+    -UNTUK MELANJUTKAN DATA SILAHKAN MASUKKAN DATA PADA KOLOM 'A' DI BARIS LANJUTAN 
+     KEMUDIAN ISI NILAI CELL 'AC6000' DENGAN URUTAN BARIS TERSEBUT
+     (pastikan semua kolom pada baris itu kosong, karena data yang ada akan ditimpa)
 
   -pastikan seluruh kolom dan baris kosong
   -lalu jalankan script ini...
