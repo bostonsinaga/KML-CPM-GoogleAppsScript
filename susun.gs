@@ -13,29 +13,46 @@
       ->  tulis tanda "*" pada "A4" untuk mengisyaratkan input majemuk
           kemudian masukkan potongan kode pada "A5", "A6", "An", ... (berurutan sebanyak jumlah potongan)
 
+      UNTUK MELANJUTKAN DATA SILAHKAN MASUKKAN DATA PADA KOLOM 'A' DI BARIS LANJUTAN 
+      KEMUDIAN GANTI NULAI 'SUPER_ROW' (LIHAT BARIS 24) MENJADI URUTAN BARUS TERSEBUT
+      (pastikan dulu semua kolom pada baris itu kosong, karena data yang ada akan ditimpa)
+
   -pastikan seluruh kolom dan baris kosong
   -lalu jalankan script ini...
 */
+
+const SUPER_ROW = 4 // nilai default adalah 4
 
 const sheet = SpreadsheetApp.getActiveSheet();
 
 function susun() {
 
-  const startRow = 4, startCol = 1;
+  const startRow = SUPER_ROW, startCol = 1;
   let currentRow = startRow, currentCol = startCol;
   let data, text, isAvailable = true;
 
-  text = sheet.getRange(startRow, startCol).getValue();
+  const firstRange = sheet.getRange(startRow, startCol);
+  const firstRangeDefault = () => {
+    firstRange
+      .clear()
+      .setHorizontalAlignment('center')
+      .setVerticalAlignment('middle');
+  }
+  text = firstRange.getValue();
 
   if (text == '*') { // multiple (
     text = '';
+    firstRangeDefault();
     let rowN = startRow + 1;
 
     while (true) {
       const cell = sheet.getRange(rowN, startCol);
       if (cell.getValue() != '') {
         text += cell.getValue();
-        cell.setHorizontalAlignment('center');
+        cell
+          .clear()
+          .setHorizontalAlignment('center')
+          .setVerticalAlignment('middle');
       }
       else {
         break;
@@ -47,6 +64,7 @@ function susun() {
   }
   else if (text != '') { // single
     data = JSON.parse(text);
+    firstRangeDefault();
   }
   else {
     isAvailable = false;
@@ -68,7 +86,6 @@ function susun() {
       }
     }
 
-    sheet.autoResizeRows(1, sheet.getMaxRows());
-    sheet.autoResizeColumn(1);
+    resize();
   }
 }
