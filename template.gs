@@ -40,9 +40,10 @@ function template() {
       .setFontFamily('Arial')
       .setFontSize(10)
       .setHorizontalAlignment('center')
-      .setVerticalAlignment('center');
+      .setVerticalAlignment('middle');
 
     sheet.getRangeList(['A1:G3', 'J1:N3', 'Q1:V3', 'Y1:AD3'])
+      .setFontWeight('bold')
       .setBackground('#DDDDDD')
       .setBorder(true, true, true, true, true, true, "black", SpreadsheetApp.BorderStyle.SOLID);
 
@@ -114,8 +115,15 @@ function template() {
       }
     }
 
-    sheet.setRowHeights(1, sheet.getMaxRows(), 21);
-    sheet.setColumnWidths(1, sheet.getMaxColumns(), 100);
+    // set number format
+    sheet.getRange('C:E').setNumberFormat('#,##0');
+    sheet.getRange('M:M').setNumberFormat('#,##0');
+    sheet.getRange('T:U').setNumberFormat('#,##0');
+    sheet.getRange('AB:AC').setNumberFormat('#,##0');
+
+    resize();
     sheet.setFrozenRows(3);
   }
 }
+
+
