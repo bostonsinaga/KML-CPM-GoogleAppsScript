@@ -70,7 +70,7 @@ function template() {
     // formulas
     let subJudulFormula = [
       [
-        ['A3', '=COUNTA(B4:B6000)'],
+        ['A3', '=COUNTA(A4:A6000)'],
         ['B3:C3', 'merge'],
         ['D3', '=SUM(D4:D6000)'],
         ['E3', '=SUM(E4:E6000)'],
