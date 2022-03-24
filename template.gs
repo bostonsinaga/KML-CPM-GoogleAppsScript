@@ -85,7 +85,7 @@ function template() {
       ],
       [
         ['Q3', '=COUNTA(Q4:Q6000)'],
-        ['R3:T3', 'merge'],
+        ['R3:S3', 'merge'],
         ['T3', '=SUM(T4:T6000)'],
       ],
       [
@@ -136,6 +136,7 @@ function template() {
 
     resize();
     sheet.setFrozenRows(3);
+    sheet.getRange('H1').setValue('\n');
   }
 }
 
