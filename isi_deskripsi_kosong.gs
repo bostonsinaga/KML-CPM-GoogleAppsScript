@@ -1,7 +1,7 @@
 // MENAMBAHKAN DESKRIPSI DENGAN TANGGAL
 // -- CLICK PADA CELL TARGET (lebih tepatnya di 'Keterangan')
 // -- ATUR NILAI VARIABLE YANG PERLU DIEDIT (beberapa variable jika diganti mungkin dapat membuat program error)
-// -- JIKA BULAN LEBIH DARI 1 DAN SAMPAI KE DESEMBER
+// -- JIKA BULAN LEBIH DARI 1 DAN SAMPAI KE DESEMBER (bukan dara 1 - 12)
 //    ISI DULU SAMPAI NOVEMBER BARU KE DESEMBER (TOGGLE ADA DI BAWAH)
 
 function isiKosong() {
@@ -25,12 +25,11 @@ function isiKosong() {
 
  ///////////// YANG PERLU DIEDIT //////////////
 
- const AKHIR_DATA_INDEX = undefined; // Masukkan index terakhir kolom target (nama)
- const TAHUN = undefined;
- const PENGHUBUNG = '';
+ const AKHIR_DATA_INDEX = 13; // Masukkan index terakhir kolom target (nama)
+ const TAHUN = 2021;
 
  SET_BULAN_AWAL_AKHIR( // contoh "1, 11" (januari-november) --V
-    // 1, 11
+    6, 6
  ); // ^-- masukan kosong jika hanya bulan 12
 
  ////////////////////////////////////////////////////////
@@ -41,7 +40,8 @@ function isiKosong() {
 
 
   let JUMLAH_ROW;
-  const JUMLAH_TOTAL = AKHIR_DATA_INDEX - sheet.getCurrentCell().getRow() + 1;
+  const curRow = sheet.getCurrentCell().getRow();
+  const JUMLAH_TOTAL = AKHIR_DATA_INDEX - curRow + 1;
 
   let target, counter = 0;
 
@@ -83,7 +83,7 @@ function isiKosong() {
     }
     else {
       target = sheet.getRange(
-        (BULAN_INDEX == 12 ? Math.floor(JUMLAH_TOTAL / 12) : JUMLAH_ROW) * counter + 4,
+        (BULAN_INDEX == 12 ? Math.floor(JUMLAH_TOTAL / 12) : JUMLAH_ROW) * counter + curRow,
         target.getColumn(),
         JUMLAH_ROW,
         1
@@ -94,7 +94,7 @@ function isiKosong() {
       let tanggal = Math.ceil(TANGGAL_AKHIR / JUMLAH_ROW * i);
       if (tanggal < TANGGAL_AWAL) tanggal = TANGGAL_AWAL;
       else if (tanggal > TANGGAL_AKHIR) tanggal = TANGGAL_AKHIR;
-      deskripsi.push([target.getValues()[i-1][0] + PENGHUBUNG + tanggal + BULAN_TAHUN]);
+      deskripsi.push([target.getValues()[i-1][0] + '\n' + tanggal + BULAN_TAHUN]);
     }
 
     target.setValues(deskripsi);
