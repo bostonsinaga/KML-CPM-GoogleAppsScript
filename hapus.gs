@@ -1,8 +1,7 @@
-/*
- * Penghapus Data Satu Sheet.
- * !!! PERHATIAN. TINDAKAN BERAKIBAT PERMANEN !!!
+/**
+ * Menghapus data pada satu sheet.
+ * Perhatian, tindakan berakibat permanen!
  */
-
 function hapus() {
   sheet.clear();
   template();
