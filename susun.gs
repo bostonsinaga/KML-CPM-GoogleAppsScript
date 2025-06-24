@@ -1,34 +1,30 @@
-/*
-  !!! PERHATIAN... JIKA BERALIH KE SHEET LAIN, MOHON UNTUK MERELOAD LAMAN INI!!!
-  (Karena sheet target bisa tak terdeteksi dan mengakibatkan target eksekusi menjadi sheet sebelumnya)
-  (berlaku untuk semua kode sumber di sini)   
-
-  *** Konstruktor Data untuk KML Copy Paste Machine ***
-  *dibuat oleh Boston Sinaga untuk Faiz Almakmun*
-
-  CARA MENGGUNAKAN:
-
-  -masukan berupa kode Array JSON yang didapat dari "https://bostonsinaga.github.io/"
-
-  -cara input
-    -(SINGLE)
-      ->  masukkan kode pada "A4"
-    -(PARTS / MULTIPLE) (terjadi apabila jumlah karakter kode melampau 50.000 karakter)
-      ->  tulis tanda "*" pada "A4" untuk mengisyaratkan input majemuk
-          kemudian masukkan potongan kode pada "A5", "A6", "An", ... (berurutan sebanyak jumlah potongan)
-
-    -UNTUK MELANJUTKAN DATA SILAHKAN MASUKKAN DATA PADA KOLOM 'A' DI BARIS LANJUTAN 
-     KEMUDIAN ISI NILAI CELL 'AC6000' DENGAN URUTAN BARIS TERSEBUT
-     (pastikan semua kolom pada baris itu kosong, karena data yang ada akan ditimpa)
-
-  -pastikan seluruh kolom dan baris kosong
-  -lalu jalankan script ini...
-*/
+/**
+ * !!! PERHATIAN... JIKA BERALIH KE SHEET LAIN, MOHON UNTUK MERELOAD LAMAN INI !!!
+ * Karena sheet target dapat tidak terdeteksi dan akan mengakibatkan target eksekusi
+ * menjadi sheet sebelumnya. Berlaku untuk semua kode sumber di repo ini.
+ * 
+ * Konstruktor Data untuk KML Copy Paste Machine.
+ * Dibuat oleh Boston Sinaga untuk Faiz Almakmun.
+ * 
+ * CARA MENGGUNAKAN:
+ * - Masukan berupa kode Array JSON yang didapat dari "https://github.com/bostonsinaga/KML-CPM-WebPage".
+ * - Cara input
+ *   - SINGLE: masukkan kode pada "A4".
+ *   - PARTS / MULTIPLE:
+ *     Terjadi apabila jumlah karakter kode melampau 50.000 karakter.
+ *     Tulis tanda "*" pada "A4" untuk mengisyaratkan input majemuk.
+ *     Kemudian masukkan potongan kode pada "A5", "A6", "An", ...
+ *     Ini berurutan sebanyak jumlah potongan.
+ * - Untuk melanjutkan data silahkan masukkan data pada kolom 'A' di baris lanjutan.
+ *   Kemudian isi nilai cell 'AC6000' dengan urutan baris tersebut.
+ *   Pastikan semua kolom pada baris itu kosong, karena data yang ada akan ditimpa.
+ * - Pastikan seluruh kolom dan baris kosong.
+ * - Lalu jalankan script ini.
+ */
 
 const sheet = SpreadsheetApp.getActiveSheet();
 
 function susun() {
-
   const AC6000 = sheet.getRange('AC6000').getValue(); // 'startRow' adjust
   const startRow = AC6000 == '' ? 4 : AC6000;
   sheet.getRange('AC6000').clear();
@@ -38,15 +34,18 @@ function susun() {
   let data, text, isAvailable = true;
 
   const firstRange = sheet.getRange(startRow, startCol);
+
   const firstRangeDefault = () => {
     firstRange
       .clear()
       .setHorizontalAlignment('center')
       .setVerticalAlignment('middle');
   }
+
   text = firstRange.getValue();
 
-  if (text == '*') { // multiple (
+  // multiple
+  if (text == '*') {
     text = '';
     firstRangeDefault();
     let rowN = startRow + 1;
@@ -68,7 +67,8 @@ function susun() {
 
     data = JSON.parse(text);
   }
-  else if (text != '') { // single
+  // single
+  else if (text != '') {
     data = JSON.parse(text);
     firstRangeDefault();
   }
@@ -76,11 +76,10 @@ function susun() {
     isAvailable = false;
     console.log('Data tidak ditemukan...');
   }
-  
-  if (isAvailable) {
 
+  if (isAvailable) {
     template();
-  
+
     // cetak data
     for (let i = 0; i < data.length; i++) {
       if (data[i] == '=>') {
@@ -95,3 +94,4 @@ function susun() {
     resize();
   }
 }
+

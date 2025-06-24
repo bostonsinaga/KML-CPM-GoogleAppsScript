@@ -1,19 +1,19 @@
-/// GANTI DATA SPESIFIK PADA KUMPULAN CELL
-// **BLOCK DARI ATAS KE BAWAH
+/**
+ * Ganti data spesifik pada kumpulan sel.
+ * Blok dari atas ke bawah.
+ */
 
 function gantiNilai() {
+  /////////////////////////////////////////** YANG PERLU DIGANTI *////////////////////////////////
 
-
-
-
-  // YANG PERLU DIGANTI //
-
-  const TITIK = [ // karakter awal sampai akhir (inklusif)
+  // karakter awal sampai akhir (inklusif)
+  const TITIK = [
     'L',
     ''
   ];
 
-  const PRASA_UMUM = [ // tiap kata sama. beda hanya 'uppercase' atau 'lowercase'
+  // Setiap kata sama. Beda hanya 'uppercase' atau 'lowercase'
+  const PRASA_UMUM = [
     'atitude'
   ];
 
@@ -21,33 +21,34 @@ function gantiNilai() {
     ''
   ];
 
+  /**
+   * Contoh bawaan:
+   * (AWAL, AKHIR, VALUE) => false
+   */
   const KONDISI_KHUSUS = [
-    /* default (copy this to below)
-      (AWAL, AKHIR, VALUE) => false
-    */
     (AWAL, AKHIR, VALUE) => false
   ];
 
-  ////////////////////////
-
-
-
-
+  ////////////////////////////////////////////////////////////////////////////////////////////////
 
   let data = [];
   const range = sheet.getActiveRange();
   const curCell = sheet.getActiveCell();
 
-  for (let counter = curCell.getRow(); counter <= range.getNumRows() + curCell.getRow() - 1; counter++) {
+  for (let counter = curCell.getRow();
+    counter <= range.getNumRows() + curCell.getRow() - 1;
+    counter++
+  ) {
+    let curVal = sheet.getRange(
+      counter, curCell.getColumn()
+    ).getValue();
 
-    let curVal = sheet.getRange(counter, curCell.getColumn()).getValue();
-    
     for (let i = 0; i < curVal.length; i++) {
-      
       let str = curVal[i];
 
       if (str == TITIK[0]) {
         str = '';
+
         let j;
         for (j = 1; j <= PRASA_UMUM[0].length; j++) {
           str += curVal[i+j];
@@ -66,7 +67,10 @@ function gantiNilai() {
           let k = 2;
           const getLastChr = () => i+j+k;
 
-          while(curVal[getLastChr()] != TITIK[1] && getLastChr() < curVal.length - 1) {
+          while(
+            curVal[getLastChr()] != TITIK[1] &&
+            getLastChr() < curVal.length - 1
+          ) {
             k++;
           }
 
@@ -105,3 +109,4 @@ function gantiNilai() {
 
   range.setValues(data);
 }
+

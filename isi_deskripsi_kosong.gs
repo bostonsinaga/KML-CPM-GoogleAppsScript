@@ -1,8 +1,10 @@
-// MENAMBAHKAN DESKRIPSI DENGAN TANGGAL
-// -- CLICK PADA CELL TARGET (lebih tepatnya di 'Keterangan')
-// -- ATUR NILAI VARIABLE YANG PERLU DIEDIT (beberapa variable jika diganti mungkin dapat membuat program error)
-// -- JIKA BULAN LEBIH DARI 1 DAN SAMPAI KE DESEMBER (bukan dara 1 - 12)
-//    ISI DULU SAMPAI NOVEMBER BARU KE DESEMBER (TOGGLE ADA DI BAWAH)
+/**
+ * Menambahkan deskripsi dengan tanggal.
+ * - Klik pada sel target.
+ * - Atur nilai variabel di bawah yang perlu diedit.
+ * - Jika bulan bukan dari Januari-Desember,
+ *   isi dahulu sampai ke november setelah itu ke desember.
+ */
 
 function isiKosong() {
 
@@ -18,11 +20,6 @@ function isiKosong() {
     }
   }
 
-
-
-
-
-
  ///////////// YANG PERLU DIEDIT //////////////
 
  const AKHIR_DATA_INDEX = 13; // Masukkan index terakhir kolom target (nama)
@@ -33,11 +30,6 @@ function isiKosong() {
  ); // ^-- masukan kosong jika hanya bulan 12
 
  ////////////////////////////////////////////////////////
- 
-
-
-
-
 
   let JUMLAH_ROW;
   const curRow = sheet.getCurrentCell().getRow();
@@ -49,10 +41,10 @@ function isiKosong() {
 
     let TANGGAL_AWAL;
     let TANGGAL_AKHIR;
-    
-    const BULAN_TAHUN = ` ${bulanStr[BULAN_INDEX - 1][0]} ${TAHUN}`;
 
+    const BULAN_TAHUN = ` ${bulanStr[BULAN_INDEX - 1][0]} ${TAHUN}`;
     const totalBulan = BULAN_AKHIR - BULAN_AWAL + 1;
+
     if (BULAN_INDEX == 12) {
       JUMLAH_ROW = JUMLAH_TOTAL - Math.floor(JUMLAH_TOTAL / totalBulan) * (totalBulan - 1);
       TANGGAL_AKHIR = 20;
@@ -67,9 +59,7 @@ function isiKosong() {
     if (BULAN_INDEX == 1) {
       TANGGAL_AWAL = 8;
     }
-    else {
-      TANGGAL_AWAL = 1;
-    }
+    else TANGGAL_AWAL = 1;
 
     const deskripsi = [];
 
@@ -101,3 +91,4 @@ function isiKosong() {
     counter++;
   }
 }
+

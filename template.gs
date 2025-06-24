@@ -1,12 +1,8 @@
-/*
-  *** Membuat template kosong ***
-  -judul tabel
-  -style dasar
-  (JIKA TIDAK BEKERJA, COBA HAPUS "*" DI AK:6000)
-*/
-
+/**
+ * Membuat template kosong untuk judul tabel dan style dasar.
+ * Jika tidak bekerja coba hapus '*' DI AK:6000.
+ */
 function keepMaximumCells() {
-
   let max = sheet.getMaxColumns();
 
   if (max < 30) {
@@ -28,7 +24,6 @@ function keepMaximumCells() {
 }
 
 function template() {
-
   if (sheet.getMaxColumns() != 30 || sheet.getMaxRows() != 6000) {
     keepMaximumCells();
   }
@@ -139,5 +134,4 @@ function template() {
     sheet.getRange('H1').setValue('\n');
   }
 }
-
 

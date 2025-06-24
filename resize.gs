@@ -1,6 +1,6 @@
-/*
-  *** Menyesuaikan ukuran cell dengan value-nya ***
-*/
+/**
+ * Menyesuaikan ukuran cell dengan value-nya.
+ */
 
 function resize() {
   sheet.autoResizeRows(1, sheet.getMaxRows());
@@ -8,3 +8,4 @@ function resize() {
     sheet.autoResizeColumn(i);
   }
 }
+

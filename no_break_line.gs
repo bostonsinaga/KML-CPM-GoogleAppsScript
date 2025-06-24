@@ -1,7 +1,8 @@
-// MENGUBAH NILAI CELL MENJADI TANPA BREAK LINE / ENTER
-// ** block cell yang ditarget kemudian jalankan kode ini
-// ** block dari atas ke bawah. JANGAN SEBALIKNYA!!
-
+/**
+ * Mengubah nilai sel menjadi tanpa baris baru.
+ * Blok sel yang ditarget kemudian jalankan kode ini.
+ * Blok dari atas ke bawah. JANGAN SEBALIKNYA!
+ */
 function noBreakLine() {
 
   let data = [];

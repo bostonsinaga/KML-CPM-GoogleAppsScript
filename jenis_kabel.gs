@@ -1,6 +1,7 @@
-// JENIS KABEL BERDASARKAN PANJANGNYA
-// **block dari atas ke bawah
-
+/**
+ * Jenis kabel berdasarkan panjangnya.
+ * Blok dari atas ke bawah.
+ */
 function jenisKabel() {
 
   let data = [], nameData = [];
@@ -14,16 +15,15 @@ function jenisKabel() {
 
     let isTanam = false;
     const nama = sheet.getRange(i, 1).getValue();
+
     if (nama.slice(nama.length - 2) == '@-') {
       nameData.push([nama.slice(0, nama.length - 2)]);
       isTanam = true;
     }
-    else {
-      nameData.push([nama]);
-    }
+    else nameData.push([nama]);
 
     const panjang = parseInt(sheet.getRange(i, 4).getValue());
-    
+
     let preData = '';
     if (i != curRow) {
       preData = sheet.getRange(i, 2).getValue();
